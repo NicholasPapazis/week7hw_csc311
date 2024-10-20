@@ -1,5 +1,6 @@
 package com.example.module03_basicgui_db_interface;
 
+import com.example.module03_basicgui_db_interface.db.ConnDbOps;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,8 +24,7 @@ public class DB_GUI_Controller implements Initializable {
 
     private final ObservableList<Person> data =
             FXCollections.observableArrayList(
-                    new Person(1, "Jacob", "Smith", "CPIS", "CS", "math"),
-                    new Person(2, "Jacob2", "Smith1", "CPIS1", "CS", "math")
+
 
             );
 
@@ -41,7 +41,9 @@ public class DB_GUI_Controller implements Initializable {
     @FXML
     ImageView img_view;
 
+    private static ConnDbOps cdbop = new ConnDbOps();; //database connection object
 
+    //gets called automatically when program runs
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         tv_id.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -51,24 +53,51 @@ public class DB_GUI_Controller implements Initializable {
         tv_major.setCellValueFactory(new PropertyValueFactory<>("major"));
         tv_course.setCellValueFactory(new PropertyValueFactory<>("course"));
 
+        data.addAll(cdbop.getData());//populates observable list data with the data from the database
 
-        tv.setItems(data);
+        tv.setItems(data); //adds what ever data is in the observable list to the TableView
     }
 
 
+    //adds new record to gui table
     @FXML
     protected void addNewRecord() {
 
-        data.add(new Person(
-                data.size()+1,
-                first_name.getText(),
-                last_name.getText(),
-                department.getText(),
-                major.getText(),
-                course.getText()
-        ));
+        int id = data.size()+1;
+        String firstName = first_name.getText();
+        String lastName = last_name.getText();
+        String department_ = department.getText();
+        String major_ = major.getText();
+        String course_ = course.getText();
+
+        //add data to the observable list
+        /*data.add(new Person(
+                id,
+                firstName,
+                lastName,
+                department_,
+                major_,
+                course_
+        ));*/
+
+        cdbop.connectToDatabase(); //connect to the database;
+
+        //insert data into mysql database
+        cdbop.insertUser(id,
+               firstName,
+               lastName,
+               department_,
+               major_,
+               course_
+        );
+        System.out.println("successfully added to database");
+
+        data.clear(); //clears the data before we read the data back in from users2 table
+        data.addAll(cdbop.getData()); //populates observable list data with the data from the database
+
     }
 
+    //clears form on gui
     @FXML
     protected void clearForm() {
         first_name.clear();
@@ -76,7 +105,9 @@ public class DB_GUI_Controller implements Initializable {
         department.setText("");
         major.setText("");
         course.setText("");
+
     }
+
 
     @FXML
     protected void closeApplication() {
@@ -84,6 +115,7 @@ public class DB_GUI_Controller implements Initializable {
     }
 
 
+    //edits record in table
     @FXML
     protected void editRecord() {
         Person p= tv.getSelectionModel().getSelectedItem();
@@ -104,6 +136,14 @@ public class DB_GUI_Controller implements Initializable {
     protected void deleteRecord() {
         Person p= tv.getSelectionModel().getSelectedItem();
         data.remove(p);
+
+        cdbop.deleteUser(p.getId()); //delete user from database
+        data.clear();
+        data.addAll(cdbop.getData()); //re-add data from database to the data observable list after user has been deleted.
+
+        //add code here to clear the input fields after the user has been deleted.
+
+
     }
 
 
@@ -116,9 +156,6 @@ public class DB_GUI_Controller implements Initializable {
 
         }
     }
-
-
-
 
 
     @FXML

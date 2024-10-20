@@ -22,6 +22,9 @@ public class DB_Application extends Application {
     private Stage primaryStage;
 
     public void start(Stage primaryStage) {
+
+
+
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
         showScene1();

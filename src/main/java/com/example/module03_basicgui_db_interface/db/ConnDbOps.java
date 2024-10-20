@@ -7,12 +7,12 @@ package com.example.module03_basicgui_db_interface.db;
 
 //added
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.example.module03_basicgui_db_interface.Person;
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -39,7 +39,7 @@ public class ConnDbOps {
             statement.close();
             conn.close();
 
-            //Second, connect to the database and create the table "users" if cot created
+            //Second, connect to the database and create the table "users2" if cot created
             conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             statement = conn.createStatement();
             String sql = "CREATE TABLE IF NOT EXISTS users2 ("
@@ -54,7 +54,7 @@ public class ConnDbOps {
 
             //check if we have users in the table users
             statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM users");
+            ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM users2");
 
             if (resultSet.next()) {
                 int numUsers = resultSet.getInt(1);
@@ -73,23 +73,32 @@ public class ConnDbOps {
         return hasRegistredUsers;
     }
 
-    public  void queryUserByName(String name) {
+    public  void queryUserById(int id) {
 
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-            String sql = "SELECT * FROM users WHERE name = ?";
+            String sql = "SELECT * FROM users2 WHERE id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, name);
+            preparedStatement.setInt(1, id);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
+            /*while (resultSet.next()) {
                 int id = resultSet.getInt("id");
                 String email = resultSet.getString("email");
                 String phone = resultSet.getString("phone");
                 String address = resultSet.getString("address");
                 System.out.println("ID: " + id + ", Name: " + name + ", Email: " + email + ", Phone: " + phone + ", Address: " + address);
+            }*/
+
+            while (resultSet.next()) {
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                String department = resultSet.getString("department");
+                String major = resultSet.getString("major");
+                String course = resultSet.getString("course");
+                System.out.println("ID:" + id + "FirstName: " + firstName + ", LastName: " + lastName + ", Department: " + department + ", Major: " + major + ", Course: " + course);
             }
 
             preparedStatement.close();
@@ -99,25 +108,25 @@ public class ConnDbOps {
         }
     }
 
+    //fills observable list called data with the data from users2 table
     public  void listAllUsers() {
-
-
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-            String sql = "SELECT * FROM users ";
+            String sql = "SELECT * FROM users2 ";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 int id = resultSet.getInt("id");
-                String firstName = resultSet.getString("name");
+                String firstName = resultSet.getString("firstName");
                 String lastName = resultSet.getString("lastName");
                 String department = resultSet.getString("department");
                 String major = resultSet.getString("major");
                 String course = resultSet.getString("course");
                 //System.out.println("ID: " + id + ", Name: " + name + ", Email: " + email + ", Phone: " + phone + ", Address: " + address);
+
             }
 
             preparedStatement.close();
@@ -127,12 +136,40 @@ public class ConnDbOps {
         }
     }
 
-    public  void insertUser(int id, String firstName, String lastName, String department, String major, String course) {
+    //returns a list of data that contains the data from the database
+    public List<Person> getData() {
+        List<Person> dataList = new ArrayList<Person>(); //stores the database data
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            String sql = "SELECT * FROM users2 ";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
 
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            //iterate through database and add rows to dataList
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String firstName = resultSet.getString("firstName");
+                String lastName = resultSet.getString("lastName");
+                String department = resultSet.getString("department");
+                String major = resultSet.getString("major");
+                String course = resultSet.getString("course");
+                dataList.add(new Person(id, firstName, lastName, department, major, course));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return dataList; //return the list that has the database rows
+
+    }
+
+    //adds new row to database
+    public void insertUser(int id, String firstName, String lastName, String department, String major, String course) {
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
-            String sql = "INSERT INTO users (id, firstName, lastName, department, major, course) VALUES (?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO users2 (id, firstName, lastName, department, major, course) VALUES (?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
             preparedStatement.setString(2, firstName);
@@ -154,7 +191,26 @@ public class ConnDbOps {
         }
     }
 
+    public void deleteUser(int id) {
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            String sql = "DELETE FROM users2 WHERE id = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+
+            int row = preparedStatement.executeUpdate();
+
+            if(row > 0) {
+                System.out.println("User deleted successfully");
+            }
+
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
-} //end class
+
+} //end of class
