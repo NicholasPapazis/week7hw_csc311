@@ -1,4 +1,7 @@
 package com.example.module03_basicgui_db_interface;
+
+
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -25,6 +28,7 @@ public class DB_Application extends Application {
 
     }
 
+    //dislays splash screen
     private void showScene1() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("splash_screen.fxml"));
@@ -38,6 +42,7 @@ public class DB_Application extends Application {
         }
     }
 
+    //displays db interface screen
     public void changeScene() {
         try {
             Parent newRoot = FXMLLoader.load(getClass().getResource("db_interface_gui.fxml"));

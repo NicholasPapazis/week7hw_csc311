@@ -8,17 +8,19 @@ public class Person {
     private String lastName;
     private String dept;
     private String major;
+    private String course;
 
     public Person() {
     }
 
 
-    public Person(Integer id, String firstName, String lastName, String dept, String major) {
+    public Person(Integer id, String firstName, String lastName, String dept, String major, String course) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.major = major;
         this.dept = dept;
+        this.course = course;
     }
 
 
@@ -64,6 +66,14 @@ public class Person {
 
     public void setDept(String dept) {
         this.dept = dept;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public String getCourse() {
+        return course;
     }
 
 

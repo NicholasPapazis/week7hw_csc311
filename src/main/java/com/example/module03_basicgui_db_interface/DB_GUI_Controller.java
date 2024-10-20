@@ -23,20 +23,20 @@ public class DB_GUI_Controller implements Initializable {
 
     private final ObservableList<Person> data =
             FXCollections.observableArrayList(
-                    new Person(1, "Jacob", "Smith", "CPIS", "CS"),
-                    new Person(2, "Jacob2", "Smith1", "CPIS1", "CS")
+                    new Person(1, "Jacob", "Smith", "CPIS", "CS", "math"),
+                    new Person(2, "Jacob2", "Smith1", "CPIS1", "CS", "math")
 
             );
 
 
     @FXML
-    TextField first_name, last_name, department, major;
+    TextField first_name, last_name, department, major, course;
     @FXML
     private TableView<Person> tv;
     @FXML
     private TableColumn<Person, Integer> tv_id;
     @FXML
-    private TableColumn<Person, String> tv_fn, tv_ln, tv_dept, tv_major;
+    private TableColumn<Person, String> tv_fn, tv_ln, tv_dept, tv_major, tv_course;
 
     @FXML
     ImageView img_view;
@@ -49,6 +49,7 @@ public class DB_GUI_Controller implements Initializable {
         tv_ln.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         tv_dept.setCellValueFactory(new PropertyValueFactory<>("dept"));
         tv_major.setCellValueFactory(new PropertyValueFactory<>("major"));
+        tv_course.setCellValueFactory(new PropertyValueFactory<>("course"));
 
 
         tv.setItems(data);
@@ -58,13 +59,13 @@ public class DB_GUI_Controller implements Initializable {
     @FXML
     protected void addNewRecord() {
 
-
         data.add(new Person(
                 data.size()+1,
                 first_name.getText(),
                 last_name.getText(),
                 department.getText(),
-                major.getText()
+                major.getText(),
+                course.getText()
         ));
     }
 
@@ -74,6 +75,7 @@ public class DB_GUI_Controller implements Initializable {
         last_name.setText("");
         department.setText("");
         major.setText("");
+        course.setText("");
     }
 
     @FXML
@@ -92,6 +94,7 @@ public class DB_GUI_Controller implements Initializable {
         p2.setLastName(last_name.getText());
         p2.setDept(department.getText());
         p2.setMajor(major.getText());
+        p2.setCourse(course.getText());
         data.remove(c);
         data.add(c,p2);
         tv.getSelectionModel().select(c);
