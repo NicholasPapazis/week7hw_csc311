@@ -249,7 +249,27 @@ public class DB_GUI_Controller implements Initializable {
 
             //create a new stage for the popup
             Stage popupStage = new Stage();
-            popupStage.setTitle("Register");
+            popupStage.setTitle("Login");
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setScene(new Scene(popupRoot));
+            popupStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(DB_GUI_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void switchToHelpPage(ActionEvent actionEvent) {
+
+        try {
+            //load the fxml file for the popup window
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("help.fxml"));
+
+            Parent popupRoot = loader.load();
+
+            //create a new stage for the popup
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Help");
             popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setScene(new Scene(popupRoot));
             popupStage.show();

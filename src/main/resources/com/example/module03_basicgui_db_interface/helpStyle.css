@@ -1,0 +1,7 @@
+#background {
+    -fx-background-color: rgba(122, 187, 231, 0.06);
+}
+
+.text{
+    -fx-font-size: 15px;
+}

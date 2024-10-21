@@ -45,9 +45,9 @@
                         <MenuItem mnemonicParsing="false" text="Close" />
                      </items>
                   </Menu>
-                  <Menu mnemonicParsing="false" text="Help">
+                  <Menu mnemonicParsing="false" onAction="#switchToHelpPage" text="Help">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem mnemonicParsing="false" onAction="#switchToHelpPage" text="About" />
                      </items>
                   </Menu>
               </menus>
