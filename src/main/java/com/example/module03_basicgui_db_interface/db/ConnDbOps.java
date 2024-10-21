@@ -45,7 +45,7 @@ public class ConnDbOps {
             String sql = "CREATE TABLE IF NOT EXISTS users2 ("
                     + "id INT( 10 ) NOT NULL PRIMARY KEY AUTO_INCREMENT,"
                     + "firstName VARCHAR(200) NOT NULL,"
-                    + "lastName VARCHAR(200) NOT NULL UNIQUE,"
+                    + "lastName VARCHAR(200) NOT NULL,"
                     + "department VARCHAR(200),"
                     + "major VARCHAR(200),"
                     + "course VARCHAR(200) NOT NULL"
@@ -239,6 +239,10 @@ public class ConnDbOps {
             e.printStackTrace();
         }
     }
+
+
+
+
 
 
 

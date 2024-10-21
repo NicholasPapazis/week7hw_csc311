@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="807.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.module03_basicgui_db_interface.DB_GUI_Controller">
    <children>
@@ -132,6 +133,14 @@
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font></Button>
+                  <Text fx:id="warningBox" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="134.93669843673706">
+                     <VBox.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Text>
                </children>
             </VBox>
          </center>

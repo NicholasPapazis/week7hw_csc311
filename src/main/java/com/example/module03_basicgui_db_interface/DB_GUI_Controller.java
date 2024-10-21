@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
 import java.io.File;
@@ -41,6 +42,9 @@ public class DB_GUI_Controller implements Initializable {
     @FXML
     ImageView img_view;
 
+    @FXML
+    private Text warningBox;
+
     private static ConnDbOps cdbop = new ConnDbOps();; //database connection object
 
     //gets called automatically when program runs
@@ -62,6 +66,12 @@ public class DB_GUI_Controller implements Initializable {
     //adds new record to gui table
     @FXML
     protected void addNewRecord() {
+
+        //checks if user filled out required fields
+        if(areFieldsEmpty()){
+            warningBox.setText("* You must fill out all the required fields");
+            return;
+        }
 
         int id = data.size()+1;
         String firstName = first_name.getText();
@@ -95,6 +105,10 @@ public class DB_GUI_Controller implements Initializable {
         data.clear(); //clears the data before we read the data back in from users2 table
         data.addAll(cdbop.getData()); //populates observable list data with the data from the database
 
+        clearForm();
+
+        warningBox.setText("");//clear warning box
+
     }
 
     //clears form on gui
@@ -118,6 +132,13 @@ public class DB_GUI_Controller implements Initializable {
     //edits record in table
     @FXML
     protected void editRecord() {
+
+        //checks if user filled out required fields
+        if(areFieldsEmpty()){
+            warningBox.setText("* You must fill out all the required fields");
+            return;
+        }
+
         Person p= tv.getSelectionModel().getSelectedItem();
         int c=data.indexOf(p);
         Person p2= new Person();
@@ -134,8 +155,9 @@ public class DB_GUI_Controller implements Initializable {
         //update the database
         cdbop.updateUser(p2.getId(), p2.getFirstName(), p2.getLastName(), p2.getDept(), p2.getMajor(), p2.getCourse());
 
+        clearForm();
 
-
+        warningBox.setText("");//clear warning box
 
     }
 
@@ -148,7 +170,7 @@ public class DB_GUI_Controller implements Initializable {
         data.clear();
         data.addAll(cdbop.getData()); //re-add data from database to the data observable list after user has been deleted.
 
-        //add code here to clear the input fields after the user has been deleted.
+        clearForm();
 
 
     }
@@ -173,7 +195,21 @@ public class DB_GUI_Controller implements Initializable {
         department.setText(p.getDept());
         major.setText(p.getMajor());
         course.setText(p.getCourse());
+    }
 
+    protected boolean areFieldsEmpty(){
+        String firstName = first_name.getText();
+        String lastName = last_name.getText();
+        String dept = department.getText();
+        String major_ = major.getText();
+        String course_ = course.getText();
+
+        if(firstName == "" || lastName == "" || dept == "" || major_ == "" || course_ == ""){
+            return true;
+        }
+        return false;
 
     }
+
+
 }
