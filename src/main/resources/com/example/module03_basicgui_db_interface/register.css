@@ -1,0 +1,56 @@
+#registerPage {
+    -fx-background-color: rgba(186, 231, 255, 0.27);
+}
+
+#emailInput {
+    -fx-border-color: #bdc3c7;
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+#passwordInput {
+    -fx-border-color: #bdc3c7;
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+#usernameInput {
+    -fx-border-color: #bdc3c7;
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+#passwordInput {
+    -fx-border-color: #bdc3c7;
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+#confirmPasswordInput {
+    -fx-border-color: #bdc3c7;
+    -fx-background-color: rgba(0, 0, 0, 0);
+    -fx-padding: 5px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+
+#registerButton {
+    -fx-background-color: #2980b9;
+    -fx-text-fill: white;
+    -fx-padding: 8px 15px;
+    -fx-font-size: 14px;
+    -fx-background-radius: 5px;
+    -fx-font-weight: bold;
+    -fx-border-color: black;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+}
