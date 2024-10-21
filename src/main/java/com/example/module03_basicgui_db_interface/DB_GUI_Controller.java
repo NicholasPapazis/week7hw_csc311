@@ -130,6 +130,13 @@ public class DB_GUI_Controller implements Initializable {
         data.remove(c);
         data.add(c,p2);
         tv.getSelectionModel().select(c);
+
+        //update the database
+        cdbop.updateUser(p2.getId(), p2.getFirstName(), p2.getLastName(), p2.getDept(), p2.getMajor(), p2.getCourse());
+
+
+
+
     }
 
     @FXML
@@ -165,6 +172,7 @@ public class DB_GUI_Controller implements Initializable {
         last_name.setText(p.getLastName());
         department.setText(p.getDept());
         major.setText(p.getMajor());
+        course.setText(p.getCourse());
 
 
     }

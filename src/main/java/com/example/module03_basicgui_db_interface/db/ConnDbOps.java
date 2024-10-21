@@ -200,10 +200,40 @@ public class ConnDbOps {
 
             int row = preparedStatement.executeUpdate();
 
+            //check if the row got deleted successfully
             if(row > 0) {
                 System.out.println("User deleted successfully");
+
+                sql = "UPDATE users2 SET id = id - 1 WHERE id > ?";
+                preparedStatement = conn.prepareStatement(sql);
+                preparedStatement.setInt(1, id);
+                preparedStatement.executeUpdate();
+                System.out.println("IDs decremented successfully");
             }
 
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public  void updateUser(int id, String firstName, String lastName, String department, String major, String course) {
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            String sql = "UPDATE users2 SET firstName = ?, lastName = ?, department = ?, major = ?, course = ? WHERE id = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(sql);
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setString(2, lastName);
+            preparedStatement.setString(3, department);
+            preparedStatement.setString(4, major);
+            preparedStatement.setString(5, course);
+            preparedStatement.setInt(6, id);
+
+            int row = preparedStatement.executeUpdate();
+
+            if(row > 0){
+                System.out.println("User updated successfully");
+            }
 
         }catch (SQLException e) {
             e.printStackTrace();
