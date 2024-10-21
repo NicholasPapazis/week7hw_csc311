@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="registerPage" prefHeight="400.0" prefWidth="600.0" stylesheets="@register.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_firebase_webview_auth.view.AccessFBView">
+<AnchorPane fx:id="registerPage" prefHeight="400.0" prefWidth="600.0" stylesheets="@register.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.module03_basicgui_db_interface.Register">
     <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="363.0" layoutX="136.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="327.0" />
         <Text layoutX="254.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register">
@@ -17,7 +17,7 @@
             </font></Text>
         <TextField fx:id="emailInput" layoutX="170.0" layoutY="75.0" prefHeight="40.0" prefWidth="258.0" promptText="email" />
         <Label layoutX="170.0" layoutY="57.0" text="Email" />
-        <Button fx:id="registerButton" layoutX="169.0" layoutY="320.0" mnemonicParsing="false" onAction="#regRecord" prefHeight="26.0" prefWidth="258.0" text="Register" />
+        <Button fx:id="registerButton" layoutX="169.0" layoutY="320.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="258.0" text="Register" />
         <TextField fx:id="usernameInput" layoutX="170.0" layoutY="140.0" prefHeight="40.0" prefWidth="258.0" promptText="username" />
         <Label layoutX="170.0" layoutY="121.0" prefHeight="18.0" prefWidth="74.0" text="Username" />
         <TextField fx:id="passwordInput" layoutX="170.0" layoutY="205.0" prefHeight="40.0" prefWidth="258.0" promptText="password" />

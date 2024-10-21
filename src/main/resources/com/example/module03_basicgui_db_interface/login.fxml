@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="background" prefHeight="400.0" prefWidth="600.0" stylesheets="@loginStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.csc325_firebase_webview_auth.view.AccessFBView">
+<AnchorPane fx:id="background" prefHeight="400.0" prefWidth="600.0" stylesheets="@loginStyle.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.module03_basicgui_db_interface.Login">
     <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="293.0" layoutX="140.0" layoutY="43.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="320.0" />
         <Text layoutX="258.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
@@ -20,7 +20,7 @@
       </Text>
         <TextField fx:id="userNameInputLogin" layoutX="172.0" layoutY="119.0" prefHeight="40.0" prefWidth="258.0" promptText="username" />
         <Label layoutX="172.0" layoutY="99.0" text="Email" />
-        <Button fx:id="loginButton" layoutX="172.0" layoutY="242.0" mnemonicParsing="false" onAction="#logInUser" prefHeight="25.0" prefWidth="258.0" text="Login" />
+        <Button fx:id="loginButton" layoutX="172.0" layoutY="242.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="258.0" text="Login" />
         <TextField fx:id="passwordInputLogin" layoutX="172.0" layoutY="189.0" prefHeight="40.0" prefWidth="258.0" promptText="password" />
         <Label layoutX="172.0" layoutY="172.0" text="Password" />
       <VBox layoutX="42.0" layoutY="63.0" prefHeight="200.0" prefWidth="100.0">

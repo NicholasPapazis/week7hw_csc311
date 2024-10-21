@@ -3,8 +3,12 @@ package com.example.module03_basicgui_db_interface;
 import com.example.module03_basicgui_db_interface.db.ConnDbOps;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -14,11 +18,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class DB_GUI_Controller implements Initializable {
@@ -210,6 +218,47 @@ public class DB_GUI_Controller implements Initializable {
         return false;
 
     }
+
+    public void switchToRegisterPage(ActionEvent actionEvent) {
+
+        try {
+            //load the fxml file for the popup window
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
+
+            Parent popupRoot = loader.load();
+
+            //create a new stage for the popup
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Register");
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setScene(new Scene(popupRoot));
+            popupStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(DB_GUI_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public void switchToLoginPage(ActionEvent actionEvent) {
+
+        try {
+            //load the fxml file for the popup window
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("login.fxml"));
+
+            Parent popupRoot = loader.load();
+
+            //create a new stage for the popup
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Register");
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setScene(new Scene(popupRoot));
+            popupStage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(DB_GUI_Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
 
 
 }
