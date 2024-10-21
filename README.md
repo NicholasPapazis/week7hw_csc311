@@ -4,16 +4,16 @@ This database management desktop application allows users to easily configure an
 
 Features:
 
-    Azure Database Configuration: Setup and connect to Azure Database.
-    Shell Code and Database Connection: Connect shell code with Azure DB server.
-    Error Handling: Efficient handling and reporting of database errors.
-    Testing and Debugging: Comprehensive testing to ensure functionality and error-free performance.
-    UI Enhancements: Improved user interface with editing and deleting functionalities.
-    Splash Screen: Engaging splash screen and intuitive login/registration pages.
+    - Azure Database Configuration: Setup and connect to Azure Database.
+    - Shell Code and Database Connection: Connect shell code with Azure DB server.
+    - Error Handling: Efficient handling and reporting of database errors.
+    - Testing and Debugging: Comprehensive testing to ensure functionality and error-free performance.
+    - UI Enhancements: Improved user interface with editing and deleting functionalities.
+    - Splash Screen: Engaging splash screen and intuitive login/registration pages.
 
 Application actions:
 
-Clear - clears input fields.
-Add - adds user to database.
-Edit - edits user record in database.
-Delete - deletes user record in database.
+- Clear - clears input fields.
+- Add - adds user to database.
+- Edit - edits user record in database.
+- Delete - deletes user record in database.
