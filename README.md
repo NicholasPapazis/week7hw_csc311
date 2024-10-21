@@ -10,3 +10,10 @@ Features:
     Testing and Debugging: Comprehensive testing to ensure functionality and error-free performance.
     UI Enhancements: Improved user interface with editing and deleting functionalities.
     Splash Screen: Engaging splash screen and intuitive login/registration pages.
+
+Application actions:
+
+Clear - clears input fields.
+Add - adds user to database.
+Edit - edits user record in database.
+Delete - deletes user record in database.
